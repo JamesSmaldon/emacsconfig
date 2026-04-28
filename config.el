@@ -165,3 +165,13 @@
        :desc "Debug test at point" "t" #'my/dape-go-test-current
        :desc "Dape info"           "i" #'dape-info
        :desc "Dape quit"           "q" #'dape-quit))
+
+;; Register the regexp globally, before any hooks run
+(after! compile
+  (add-to-list 'compilation-error-regexp-alist-alist
+    '(pyright "--> \\(.*\\):\\([0-9]+\\):\\([0-9]+\\)"
+              1 2 (3)))
+  (add-to-list 'compilation-error-regexp-alist 'pyright))
+
+;; Then just enable the mode in the hook
+(add-hook 'vterm-mode-hook #'compilation-shell-minor-mode)

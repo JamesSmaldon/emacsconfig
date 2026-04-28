@@ -2,7 +2,6 @@
 
 ## General 
 
-|-----------------|------------------------------------------|
 | Key Combination | Description                              |
 |-----------------|------------------------------------------|
 | SPC h C         | Open this cheat sheet                    |
@@ -18,6 +17,7 @@
 | SPC s r         | Search and replace                       |
 | SPC f d         | Find directory and open in dired         |
 | SPC ~           | Restore last popup                       |
+| M /             | Complete word                            |
 
 ## Search and replace across a project
 SPC s p - search project, this gives list of results.
@@ -28,14 +28,12 @@ C-c C-c - Commit changes to all files.
 
 ## Terminals
 
-|-----------------|--------------------------------------------|
 | Key Combination | Description                                |
 |-----------------|--------------------------------------------|
 | SPC o t         | Open vterm terminal (or toggle popup term) |
 
 ## Projects
 
-|-----------------|--------------------------------------|
 | Key Combination | Description                          |
 |-----------------|--------------------------------------|
 | SPC p f         | Find file in project                 |
@@ -52,7 +50,6 @@ Change what gets run with SPC p R:
 
 ## Git
 
-|-----------------|--------------------------------|
 | Key Combination | Description                    |
 |-----------------|--------------------------------|
 | SPC g g         | Open magit status              |
@@ -79,10 +76,12 @@ Change what gets run with SPC p R:
 | g c (with selection)  | Comment selected code     |
 | M-x revert-buffer     | Reload file from disk     |
 | SPC g B (q to remove) | Show git blame annotation |
+| SPC c r               | Rename symbol   |
+| gcc (gc on selection) | Toggle comments |
+
 
 ## Debugging
 
-|-----------------|-------------------|
 | Key Combination | Description       |
 |-----------------|-------------------|
 | F9              | Toggle breakpoint |
@@ -92,6 +91,7 @@ Change what gets run with SPC p R:
 | F8              | Step Out          |
 
 ## Testing
+
 | Key Combination | Description                      |
 |-----------------|----------------------------------|
 | SPC m t F       | Run pytest tests in current file |
