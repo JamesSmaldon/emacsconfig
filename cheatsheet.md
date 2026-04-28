@@ -17,6 +17,14 @@
 | SPC t w         | Wrap text (visually)                     |
 | SPC s r         | Search and replace                       |
 | SPC f d         | Find directory and open in dired         |
+| SPC ~           | Restore last popup                       |
+
+## Search and replace across a project
+SPC s p - search project, this gives list of results.
+C-c C-e - Turn results into a buffer
+C-c C-p - Make buffer editable.
+:%s/old/new/g - Replace
+C-c C-c - Commit changes to all files.
 
 ## Terminals
 
@@ -52,13 +60,25 @@ Change what gets run with SPC p R:
 
 ## Navigating Code
 
-| Key Combination | Description                 |
-|-----------------|-----------------------------|
-| SPC c d         | Goto definition             |
-| SPC c D         | Find references             |
-| Ctrl-o          | Navigate back               |
-| K or SPC c k    | Show hover docs             |
-| SPC c x         | show list of all LSP issues |
+| Key Combination | Description                     |
+|-----------------|---------------------------------|
+| SPC c d         | Goto definition                 |
+| SPC c D         | Find references                 |
+| Ctrl-o          | Navigate back                   |
+| Ctrl-i          | Navigate forward                |
+| K or SPC c k    | Show hover docs                 |
+| SPC c x         | show list of all LSP issues     |
+| zM              | Fold all functions              |
+| za              | Toggle fold                     |
+| SPC c i         | Find implementation of function |
+| SPC t m         | Show minimap                    |
+
+## Editing Code
+| Key Combination       | Description               |
+|-----------------------|---------------------------|
+| g c (with selection)  | Comment selected code     |
+| M-x revert-buffer     | Reload file from disk     |
+| SPC g B (q to remove) | Show git blame annotation |
 
 ## Debugging
 
@@ -76,3 +96,4 @@ Change what gets run with SPC p R:
 |-----------------|----------------------------------|
 | SPC m t F       | Run pytest tests in current file |
 | SPC m t t       | Run pytest test under cursor     |
+| SPC p T         | Run tests for the entire project |

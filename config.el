@@ -82,18 +82,11 @@
   :bind-keymap ("C-c c" . claude-code-command-map)
   )
 
-(after! dap-mode
-  (setq dap-python-debugger 'debugpy))
+;; (after! dap-mode
+;;   (setq dap-python-debugger 'debugpy))
 
 (setenv "SHOPPING_API_URL" "http://192.168.1.85:8081")
-
-(use-package dape
-  :ensure t
-  :bind (("<f9>" . dape-breakpoint-toggle)
-         ("<f5>"  . dape)
-         ("<f6>"  . dape-next)
-         ("<f7>"  . dape-step-in)
-         ("<f8>"  . dape-step-out)))
+(setenv "CGO_CFLAGS" "-O2")
 
 
 (defun my/open-cheatsheet ()
@@ -106,3 +99,69 @@
 
 (map! :leader
       :desc "Cheatsheet" "h C" #'my/open-cheatsheet)
+
+
+;; Try to ensure that links are clickable in the terminal.
+(add-hook 'vterm-mode-hook #'goto-address-mode)
+(add-hook 'vterm-mode-hook #'compilation-shell-minor-mode)
+
+;; When opening a buffer after a clicking a link in the terminal, it opens in "MOTION" mode
+;; which means vim bindings don't work. This is confusing. This config should make it so that
+;; Evil mode is always active.
+;;
+;; Ensure evil-mode is active in compilation-linked buffers
+(add-hook 'find-file-hook #'evil-normalize-keymaps)
+
+
+(use-package! dape
+  :bind (("<f5>"  . dape)
+         ("<f6>"  . dape-next)
+         ("<f7>"  . dape-step-in)
+         ("<f8>"  . dape-step-out)
+         ("<f9>"  . dape-breakpoint-toggle)
+         ("<f10>" . dape-continue))
+  :config
+  (add-hook 'dape-display-source-hook #'pulse-momentary-highlight-one-line)
+  (remove-hook 'dape-start-hook 'dape-repl)
+
+  (with-eval-after-load 'dape
+    (add-to-list 'dape-configs
+                 '(dlv-test
+                   modes (go-mode go-ts-mode)
+                   ensure dape-ensure-command
+                   command "dlv"
+                   command-args ("dap" "--listen" "127.0.0.1::autoport")
+                   command-cwd dape-command-cwd
+                   command-insert-stderr t
+                   port :autoport
+                   :request "launch"
+                   :type "go"
+                   :mode "test"
+                   :cwd "."
+                   :program "."))))
+
+(defun my/dape-go-test-current ()
+  "Debug the Go test function at point."
+  (interactive)
+  (let ((test-name (car (split-string (or (which-function) "") " "))))
+    (unless test-name
+      (user-error "No function at point"))
+    (dape `(modes (go-mode go-ts-mode)
+            ensure dape-ensure-command
+            command "dlv"
+            command-args ("dap" "--listen" "127.0.0.1::autoport")
+            command-cwd ,default-directory
+            command-insert-stderr t
+            port :autoport
+            :request "launch"
+            :type "go"
+            :mode "test"
+            :cwd "."
+            :program "."
+            :args ["-test.v" "-test.run" ,(concat "^" test-name "$")]))))
+
+(map! :leader
+      (:prefix ("d" . "debug")
+       :desc "Debug test at point" "t" #'my/dape-go-test-current
+       :desc "Dape info"           "i" #'dape-info
+       :desc "Dape quit"           "q" #'dape-quit))
