@@ -53,6 +53,9 @@ Change what gets run with SPC p R:
 | Key Combination | Description                    |
 |-----------------|--------------------------------|
 | SPC g g         | Open magit status              |
+| --> f           | fetch                          |
+| --> F           | Pull                           |
+| --> p           | Push
 | SPC g d         | diff current file against HEAD |
 
 ## Navigating Code
