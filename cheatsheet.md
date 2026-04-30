@@ -50,13 +50,16 @@ Change what gets run with SPC p R:
 
 ## Git
 
-| Key Combination | Description                    |
-|-----------------|--------------------------------|
-| SPC g g         | Open magit status              |
-| --> f           | fetch                          |
-| --> F           | Pull                           |
-| --> p           | Push
-| SPC g d         | diff current file against HEAD |
+| Key Combination                     | Description                    |
+|-------------------------------------|--------------------------------|
+| SPC g g                             | Open magit status              |
+| --> f                               | fetch                          |
+| --> F                               | Pull                           |
+| --> p                               | Push                           |
+| --> diff view --> O f               | Reset file to another version  |
+| SPC g d                             | diff current file against HEAD |
+| Shft Tab                            | Collapse all diffs             |
+| C RET (when hovering on a filename) | Visit file for editing         |
 
 ## Navigating Code
 
