@@ -63,18 +63,20 @@ Change what gets run with SPC p R:
 
 ## Navigating Code
 
-| Key Combination | Description                     |
-|-----------------|---------------------------------|
-| SPC c d         | Goto definition                 |
-| SPC c D         | Find references                 |
-| Ctrl-o          | Navigate back                   |
-| Ctrl-i          | Navigate forward                |
-| K or SPC c k    | Show hover docs                 |
-| SPC c x         | show list of all LSP issues     |
-| zM              | Fold all functions              |
-| za              | Toggle fold                     |
-| SPC c i         | Find implementation of function |
-| SPC t m         | Show minimap                    |
+| Key Combination           | Description                     |
+|---------------------------|---------------------------------|
+| SPC c d                   | Goto definition                 |
+| SPC c D                   | Find references                 |
+| Ctrl-o                    | Navigate back                   |
+| Ctrl-i                    | Navigate forward                |
+| K or SPC c k              | Show hover docs                 |
+| SPC c x                   | show list of all LSP issues     |
+| zM                        | Fold all functions              |
+| za                        | Toggle fold                     |
+| SPC c i                   | Find implementation of function |
+| SPC t m                   | Show minimap                    |
+| SPC p c (C for recompile) | Compile code                    |
+| M-g n/p                   | Navigate to next/previous error |
 
 ## Editing Code
 | Key Combination       | Description               |
