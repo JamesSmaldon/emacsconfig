@@ -79,6 +79,9 @@ Change what gets run with SPC p R:
 | SPC t m                   | Show minimap                    |
 | SPC p c (C for recompile) | Compile code                    |
 | M-g n/p                   | Navigate to next/previous error |
+| SPC s p                   | Search project for string       |
+| --> M-p                   | Previous search                 |
+
 
 ## Editing Code
 | Key Combination       | Description               |
