@@ -6,7 +6,8 @@
 |-----------------|------------------------------------------|
 | SPC h C         | Open this cheat sheet                    |
 | SPC h r r       | Reload doom config                       |
-| SPC ,           | switch buffer                            |
+| SPC ,           | switch buffer within current workspace   |
+| SPC <           | Switch to any buffer                     |
 | SPC f p         | Find private files (config)              |
 | SPC b D         | Pick buffer and kill from list           |
 | SPC b d         | Kill current buffer                      |
@@ -80,6 +81,7 @@ Change what gets run with SPC p R:
 | SPC p c (C for recompile) | Compile code                    |
 | M-g n/p                   | Navigate to next/previous error |
 | SPC s p                   | Search project for string       |
+| SPC s d/D       	    | Search directory                |
 | --> M-p                   | Previous search                 |
 
 
