@@ -41,6 +41,7 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
+(setq org-agenda-files '("~/org/"))
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -113,58 +114,58 @@
 (add-hook 'find-file-hook #'evil-normalize-keymaps)
 
 
-(use-package! dape
-  :bind (("<f5>"  . dape)
-         ("<f6>"  . dape-next)
-         ("<f7>"  . dape-step-in)
-         ("<f8>"  . dape-step-out)
-         ("<f9>"  . dape-breakpoint-toggle)
-         ("<f10>" . dape-continue))
-  :config
-  (add-hook 'dape-display-source-hook #'pulse-momentary-highlight-one-line)
-  (remove-hook 'dape-start-hook 'dape-repl)
+;; (use-package! dape
+;;   :bind (("<f5>"  . dape)
+;;          ("<f6>"  . dape-next)
+;;          ("<f7>"  . dape-step-in)
+;;          ("<f8>"  . dape-step-out)
+;;          ("<f9>"  . dape-breakpoint-toggle)
+;;          ("<f10>" . dape-continue))
+;;   :config
+;;   (add-hook 'dape-display-source-hook #'pulse-momentary-highlight-one-line)
+;;   (remove-hook 'dape-start-hook 'dape-repl)
 
-  (with-eval-after-load 'dape
-    (add-to-list 'dape-configs
-                 '(dlv-test
-                   modes (go-mode go-ts-mode)
-                   ensure dape-ensure-command
-                   command "dlv"
-                   command-args ("dap" "--listen" "127.0.0.1::autoport")
-                   command-cwd dape-command-cwd
-                   command-insert-stderr t
-                   port :autoport
-                   :request "launch"
-                   :type "go"
-                   :mode "test"
-                   :cwd "."
-                   :program "."))))
+;;   (with-eval-after-load 'dape
+;;     (add-to-list 'dape-configs
+;;                  '(dlv-test
+;;                    modes (go-mode go-ts-mode)
+;;                    ensure dape-ensure-command
+;;                    command "dlv"
+;;                    command-args ("dap" "--listen" "127.0.0.1::autoport")
+;;                    command-cwd dape-command-cwd
+;;                    command-insert-stderr t
+;;                    port :autoport
+;;                    :request "launch"
+;;                    :type "go"
+;;                    :mode "test"
+;;                    :cwd "."
+;;                    :program "."))))
 
-(defun my/dape-go-test-current ()
-  "Debug the Go test function at point."
-  (interactive)
-  (let ((test-name (car (split-string (or (which-function) "") " "))))
-    (unless test-name
-      (user-error "No function at point"))
-    (dape `(modes (go-mode go-ts-mode)
-            ensure dape-ensure-command
-            command "dlv"
-            command-args ("dap" "--listen" "127.0.0.1::autoport")
-            command-cwd ,default-directory
-            command-insert-stderr t
-            port :autoport
-            :request "launch"
-            :type "go"
-            :mode "test"
-            :cwd "."
-            :program "."
-            :args ["-test.v" "-test.run" ,(concat "^" test-name "$")]))))
+;; (defun my/dape-go-test-current ()
+;;   "Debug the Go test function at point."
+;;   (interactive)
+;;   (let ((test-name (car (split-string (or (which-function) "") " "))))
+;;     (unless test-name
+;;       (user-error "No function at point"))
+;;     (dape `(modes (go-mode go-ts-mode)
+;;             ensure dape-ensure-command
+;;             command "dlv"
+;;             command-args ("dap" "--listen" "127.0.0.1::autoport")
+;;             command-cwd ,default-directory
+;;             command-insert-stderr t
+;;             port :autoport
+;;             :request "launch"
+;;             :type "go"
+;;             :mode "test"
+;;             :cwd "."
+;;             :program "."
+;;             :args ["-test.v" "-test.run" ,(concat "^" test-name "$")]))))
 
-(map! :leader
-      (:prefix ("d" . "debug")
-       :desc "Debug test at point" "t" #'my/dape-go-test-current
-       :desc "Dape info"           "i" #'dape-info
-       :desc "Dape quit"           "q" #'dape-quit))
+;; (map! :leader
+;;       (:prefix ("d" . "debug")
+;;        :desc "Debug test at point" "t" #'my/dape-go-test-current
+;;        :desc "Dape info"           "i" #'dape-info
+;;        :desc "Dape quit"           "q" #'dape-quit))
 
 ;; Register the regexp globally, before any hooks run
 (after! compile
@@ -175,3 +176,7 @@
 
 ;; Then just enable the mode in the hook
 (add-hook 'vterm-mode-hook #'compilation-shell-minor-mode)
+
+(require 'dap-dlv-go)
+
+(load! "~/emacs/go-test-explorer")
