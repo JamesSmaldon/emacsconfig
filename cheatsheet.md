@@ -137,3 +137,4 @@ Change what gets run with SPC p R:
 | C-c C-s (on todo item) | Schedule item         |
 | C-c C-d (on todo item) | Set deadline          |
 | C-c .                  | Stamp date on entry   |
+| C-c C-z (on todo item) | Create Note on item   |
