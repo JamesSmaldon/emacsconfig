@@ -75,3 +75,10 @@
            :files ("*.el" (:exclude "images/*"))))
 
 (package! dape)
+
+(package! test-explorer
+  :recipe (:local-repo "/home/james/code/emacs-test"
+           :files ("test-explorer.el" "test-explorer-python.el" "te_plugin.py"
+                   "test-explorer-elisp.el" "te_runner.el")))
+
+(package! csv-mode)

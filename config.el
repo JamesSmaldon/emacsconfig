@@ -167,6 +167,11 @@
 ;;        :desc "Dape info"           "i" #'dape-info
 ;;        :desc "Dape quit"           "q" #'dape-quit))
 
+(use-package! test-explorer
+  :config
+  (require 'test-explorer-python)
+  (require 'test-explorer-elisp))
+
 ;; Register the regexp globally, before any hooks run
 (after! compile
   (add-to-list 'compilation-error-regexp-alist-alist
