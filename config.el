@@ -159,10 +159,10 @@
 ;;        :desc "Dape info"           "i" #'dape-info
 ;;        :desc "Dape quit"           "q" #'dape-quit))
 
-(use-package! test-explorer
-  :config
-  (require 'test-explorer-python)
-  (require 'test-explorer-elisp))
+;; (use-package! test-explorer
+;;   :config
+;;   (require 'test-explorer-python)
+;;   (require 'test-explorer-elisp))
 
 ;; Register the regexp globally, before any hooks run
 (after! compile
@@ -176,7 +176,7 @@
 
 (require 'dap-dlv-go)
 
-(load! "~/emacs/go-test-explorer")
+;; (load! "~/emacs/go-test-explorer")
 
 ;; config.el
 (use-package! evil-ghostel
