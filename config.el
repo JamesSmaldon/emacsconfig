@@ -75,14 +75,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(use-package! claude-code
-  :config
-  (add-hook 'claude-code-process-environment-functions #'monet-start-server-function)
-  (monet-mode 1)
-  (claude-code-mode)
-  :bind-keymap ("C-c c" . claude-code-command-map)
-  )
-
 ;; (after! dap-mode
 ;;   (setq dap-python-debugger 'debugpy))
 
@@ -185,3 +177,33 @@
 (require 'dap-dlv-go)
 
 (load! "~/emacs/go-test-explorer")
+
+;; config.el
+(use-package! evil-ghostel
+  :after (ghostel evil)
+  :hook (ghostel-mode . evil-ghostel-mode))
+
+
+(use-package! inheritenv)
+
+(use-package! ghostel)
+
+(use-package! claude-code
+  :bind-keymap
+  ("C-c c" . claude-code-command-map)
+  :bind
+  (:repeat-map my-claude-code-map ("M" . claude-code-cycle-mode))
+  :config
+  (add-hook 'claude-code-process-environment-functions #'monet-start-server-function)
+  (monet-mode 1)
+  (claude-code-mode))
+
+(setq claude-code-terminal-backend 'vterm)
+
+
+;; Set the title of the window based on the project we're in.
+(setq frame-title-format
+      '((:eval
+         (if (and (fboundp 'projectile-project-p) (projectile-project-p))
+             (format "%s — %s" (projectile-project-name) "%b")
+           "%b — Emacs"))))

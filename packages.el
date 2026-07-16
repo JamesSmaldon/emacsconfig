@@ -60,14 +60,25 @@
 (package! inheritenv
   :recipe (:host github :repo "purcell/inheritenv"))
 
-(package! eat
-  :recipe (:host codeberg
-           :repo "akib/emacs-eat"
-           :files ("*.el" ("term" "term/*.el") "*.texi"
-                   "*.ti" ("terminfo/e" "terminfo/e/*")
-                   ("terminfo/65" "terminfo/65/*")
-                   ("integration" "integration/*")
-                   (:exclude ".dir-locals.el" "*-tests.el"))))
+;; (package! eat
+;;   :recipe (:host codeberg
+;;            :repo "akib/emacs-eat"
+;;            :files ("*.el" ("term" "term/*.el") "*.texi"
+;;                    "*.ti" ("terminfo/e" "terminfo/e/*")
+;;                    ("terminfo/65" "terminfo/65/*")
+;;                    ("integration" "integration/*")
+;;                    (:exclude ".dir-locals.el" "*-tests.el"))))
+
+
+;; (package! claude-code
+;;   :recipe (:host github :repo "stevemolitor/claude-code.el"
+;;            :branch "main" :depth 1
+;;            :files ("*.el" (:exclude "images/*"))))
+
+(package! ghostel)
+(package! evil-ghostel)
+
+(package! dape)
 
 (package! claude-code
   :recipe (:host github :repo "stevemolitor/claude-code.el"
@@ -76,9 +87,9 @@
 
 (package! dape)
 
-(package! test-explorer
-  :recipe (:local-repo "/home/james/code/emacs-test"
-           :files ("test-explorer.el" "test-explorer-python.el" "te_plugin.py"
-                   "test-explorer-elisp.el" "te_runner.el")))
+;; (package! test-explorer
+;;   :recipe (:local-repo "/home/james/code/emacs-test"
+;;            :files ("test-explorer.el" "test-explorer-python.el" "te_plugin.py"
+;;                    "test-explorer-elisp.el" "te_runner.el")))
 
 (package! csv-mode)

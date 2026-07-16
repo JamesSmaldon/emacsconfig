@@ -2,24 +2,25 @@
 
 ## General 
 
-| Key Combination | Description                                |
-|-----------------|--------------------------------------------|
-| SPC h C         | Open this cheat sheet                      |
-| SPC h r r       | Reload doom config                         |
-| SPC ,           | switch buffer within current workspace     |
-| SPC <           | Switch to any buffer                       |
-| SPC f p         | Find private files (config)                |
-| SPC b D         | Pick buffer and kill from list             |
-| SPC b d         | Kill current buffer                        |
-| SPC b b         | Show list of buffers and select to open.   |
-| SPC o p         | Open project tree view                     |
-| SPC p p         | Open Project                               |
-| SPC t w         | Wrap text (visually)                       |
-| SPC s r         | Search and replace                         |
-| SPC f d         | Find directory and open in dired           |
-| SPC ~           | Restore last popup                         |
-| M /             | Complete word                              |
-| SPC p i         | invalidate project cache (refresh project) |
+| Key Combination           | Description                                |
+|---------------------------|--------------------------------------------|
+| SPC h C                   | Open this cheat sheet                      |
+| SPC h r r                 | Reload doom config                         |
+| SPC ,                     | switch buffer within current workspace     |
+| SPC <                     | Switch to any buffer                       |
+| SPC f p                   | Find private files (config)                |
+| SPC b D                   | Pick buffer and kill from list             |
+| SPC b d                   | Kill current buffer                        |
+| SPC b b                   | Show list of buffers and select to open.   |
+| SPC o p                   | Open project tree view                     |
+| SPC p p                   | Open Project                               |
+| SPC t w                   | Wrap text (visually)                       |
+| SPC s r                   | Search and replace                         |
+| SPC f d                   | Find directory and open in dired           |
+| SPC ~                     | Restore last popup                         |
+| M /                       | Complete word                              |
+| SPC p i                   | invalidate project cache (refresh project) |
+| C-r " on the command line | Paste from clip board into command         |
 
 ## Search and replace across a project
 SPC s p - search project, this gives list of results.
