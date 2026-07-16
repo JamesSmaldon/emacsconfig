@@ -102,9 +102,13 @@ Change what gets run with SPC p R:
 | gcc (gc on selection) | Toggle comments |
 
 ## Editing Markdown
-| Key Combination | Description                    |
-|-----------------|--------------------------------|
-| SPC m p         | Preview markdown (using grip)  |
+| Key Combination | Description                                         |
+|-----------------|-----------------------------------------------------|
+| SPC m p         | Preview markdown (using grip)                       |
+| z=              | View spelling corrections for this spelling mistake |
+| ]s / [s         | next/previous spelling error                        |
+| zg              | add word to dictionary                              |
+| zw              | mark word as incorrect                              |
 
 ## Bookmarks
 | Key Combination | Description        |
