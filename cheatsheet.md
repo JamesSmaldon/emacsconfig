@@ -63,7 +63,7 @@ Change what gets run with SPC p R:
 | --> (on change) x                     | Discard                                      |
 | SPC g d                               | diff current file against HEAD               |
 | Shft Tab                              | Collapse all diffs                           |
-| C RET (when hovering on a filename)   | Visit file for editing                       |
+| C-RET (when hovering on a filename)   | Visit file for editing                       |
 | SPC g B                               | Git blame                                    |
 | SPC r e                               | Rebase onto another branch                   |
 | SPC g t                               | Git time machine                             |

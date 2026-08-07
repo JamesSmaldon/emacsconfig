@@ -29,6 +29,61 @@
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
 
+(setq doom-font (font-spec :family "DejaVuSansM Nerd Font Mono" :size 14)
+      doom-symbol-font (font-spec :family "DejaVuSansM Nerd Font Mono"))
+
+;; treemacs' bundled "Default" theme has explicit icons (keyed by exact,
+;; lowercased filename) for special extensionless files like "makefile" and
+;; "docker-compose.yml" that `nerd-icons-extension-icon-alist' has no entry
+;; for. `treemacs-nerd-icons' only reads that alist when it builds its own
+;; theme, so those names silently fall through to Default's fixed 22x22px
+;; PNGs, misaligned next to every other file's scalable glyph icon.
+;;
+;; Patching the alist itself (rather than the already-built theme) means
+;; this survives any number of theme rebuilds, e.g. the one `lsp-treemacs'
+;; triggers per the HACK comment in Doom's own treemacs config: every
+;; rebuild reads this alist fresh, so a one-time downstream patch would get
+;; silently discarded the next time it happens, however many times that is.
+;; Reloading the library below re-triggers `(provide 'treemacs-nerd-icons)',
+;; which re-fires this very `after!' block (feature-load hooks fire on
+;; every load of that feature, not just the first) -- an unguarded reload
+;; here recurses forever. This flag makes the fix run exactly once.
+(defvar +treemacs-nerd-icons-fix-applied nil)
+(after! treemacs-nerd-icons
+  (unless +treemacs-nerd-icons-fix-applied
+    (setq +treemacs-nerd-icons-fix-applied t)
+    (maphash
+     (lambda (key _val)
+       (when (and (stringp key)
+                  (not (assoc key nerd-icons-extension-icon-alist)))
+         (let* ((capitalized (concat (upcase (substring key 0 1)) (substring key 1)))
+                ;; treemacs strips a leading dot when computing a dotfile's
+                ;; "extension" (".envrc" -> "envrc"), but nerd-icons' own
+                ;; regexp rules for such dotfiles expect the literal dot, so
+                ;; try that form too -- excluding its generic "^\\." catch-all
+                ;; for unrecognized dotfiles, which matches almost any key
+                ;; here and would produce a wrong icon, not a missing one.
+                (dotted-entry (assoc (concat "." key) nerd-icons-regexp-icon-alist
+                                      #'string-match))
+                (dot-match (when (and dotted-entry (not (equal (car dotted-entry) "^\\.")))
+                             (cdr dotted-entry)))
+                (match (or (nerd-icons-match-to-alist key nerd-icons-regexp-icon-alist)
+                           (cdr (assoc key nerd-icons-extension-icon-alist))
+                           (nerd-icons-match-to-alist capitalized nerd-icons-regexp-icon-alist)
+                           dot-match)))
+           (when match
+             (push (cons key match) nerd-icons-extension-icon-alist)))))
+     (treemacs-theme->gui-icons (treemacs--find-theme "Default")))
+    ;; Rebuild "nerd-icons" from the now-patched alist, and force existing
+    ;; treemacs buffers to redraw: icons are inserted as literal text at
+    ;; render time, not looked up dynamically, so an already-open panel
+    ;; won't reflect this until it's rebuilt from scratch.
+    (load (locate-library "treemacs-nerd-icons"))
+    (treemacs-load-theme "nerd-icons")
+    (dolist (buf (buffer-list))
+      (when (eq (buffer-local-value 'major-mode buf) 'treemacs-mode)
+        (kill-buffer buf)))))
+
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
