@@ -2,25 +2,26 @@
 
 ## General 
 
-| Key Combination           | Description                                |
-|---------------------------|--------------------------------------------|
-| SPC h C                   | Open this cheat sheet                      |
-| SPC h r r                 | Reload doom config                         |
-| SPC ,                     | switch buffer within current workspace     |
-| SPC <                     | Switch to any buffer                       |
-| SPC f p                   | Find private files (config)                |
-| SPC b D                   | Pick buffer and kill from list             |
-| SPC b d                   | Kill current buffer                        |
-| SPC b b                   | Show list of buffers and select to open.   |
-| SPC o p                   | Open project tree view                     |
-| SPC p p                   | Open Project                               |
-| SPC t w                   | Wrap text (visually)                       |
-| SPC s r                   | Search and replace                         |
-| SPC f d                   | Find directory and open in dired           |
-| SPC ~                     | Restore last popup                         |
-| M /                       | Complete word                              |
-| SPC p i                   | invalidate project cache (refresh project) |
-| C-r " on the command line | Paste from clip board into command         |
+| Key Combination           | Description                                                   |
+|---------------------------|---------------------------------------------------------------|
+| SPC h C                   | Open this cheat sheet                                         |
+| SPC h r r                 | Reload doom config                                            |
+| SPC ,                     | switch buffer within current workspace                        |
+| SPC <                     | Switch to any buffer                                          |
+| SPC f p                   | Find private files (config)                                   |
+| SPC b D                   | Pick buffer and kill from list                                |
+| SPC b d                   | Kill current buffer                                           |
+| SPC b b                   | Show list of buffers and select to open.                      |
+| SPC o p                   | Open project tree view                                        |
+| SPC p p                   | Open Project                                                  |
+| SPC t w                   | Wrap text (visually)                                          |
+| SPC s r                   | Search and replace                                            |
+| SPC f d                   | Find directory and open in dired                              |
+| SPC ~                     | Restore last popup                                            |
+| M /                       | Complete word                                                 |
+| SPC p i                   | invalidate project cache (refresh project)                    |
+| C-r " on the command line | Paste from clip board into command                            |
+| M-x treemacs-follow-mode  | Enable follow mode (highlights currently edited file in tree) |
 
 ## Search and replace across a project
 SPC s p - search project, this gives list of results.
@@ -53,23 +54,25 @@ Change what gets run with SPC p R:
 
 ## Git
 
-| Key Combination                       | Description                                  |
-|---------------------------------------|----------------------------------------------|
-| SPC g g                               | Open magit status                            |
-| --> f                                 | fetch                                        |
-| --> F                                 | Pull                                         |
-| --> p                                 | Push                                         |
-| --> diff view --> O f                 | Reset file to another version                |
-| --> (on change) x                     | Discard                                      |
-| SPC g d                               | diff current file against HEAD               |
-| Shft Tab                              | Collapse all diffs                           |
-| C-RET (when hovering on a filename)   | Visit file for editing                       |
-| SPC g B                               | Git blame                                    |
-| SPC r e                               | Rebase onto another branch                   |
-| SPC g t                               | Git time machine                             |
-| --> (enter insert mode) p             | Previous change                              |
-| --> (enter insert mode) n             | Next change                                  |
-| C-c C-c (when editing commit message) | Finish commit (Don't do :q it doesn't work.) |
+| Key Combination                       | Description                                                                |
+|---------------------------------------|----------------------------------------------------------------------------|
+| SPC g g                               | Open magit status                                                          |
+| --> f                                 | fetch                                                                      |
+| --> F                                 | Pull                                                                       |
+| --> p                                 | Push                                                                       |
+| --> diff view --> O f                 | Reset file to another version                                              |
+| --> (on change) x                     | Discard                                                                    |
+| --> d r main...HEAD                   | Diff current branch against main mergebase                                 |
+|                                       | (see only changes on this branch compared to where it branched from main.) |
+| SPC g d                               | diff current file against HEAD                                             |
+| Shft Tab                              | Collapse all diffs                                                         |
+| C-RET (when hovering on a filename)   | Visit file for editing                                                     |
+| SPC g B                               | Git blame                                                                  |
+| SPC r e                               | Rebase onto another branch                                                 |
+| SPC g t                               | Git time machine                                                           |
+| --> (enter insert mode) p             | Previous change                                                            |
+| --> (enter insert mode) n             | Next change                                                                |
+| C-c C-c (when editing commit message) | Finish commit (Don't do :q it doesn't work.)                               |
 
 ## Navigating Code
 
@@ -91,6 +94,27 @@ Change what gets run with SPC p R:
 | SPC s d/D       	    | Search directory                |
 | --> M-p                   | Previous search                 |
 
+## Searching with ripgrep
+
+When searching the project (e.g. SPC s p), you are actually generating a ripgrep command line and executing it.
+
+This means, if you want to filter you can do it by adding ripgrep regexes etc.
+
+```
+# Search for "registry" in all files with extension .tpl
+registry -g'*.tpl'
+
+# Search for "registry" in all files without extension .tpl
+registry -g'!*.tpl'
+```
+
+## Building Code
+
+| Key Combination | Description                     |
+|-----------------|---------------------------------|
+| SPC c c         | quick build (remembers command) |
+|                 |                                 |
+|                 |                                 |
 
 ## Editing Code
 | Key Combination       | Description               |
@@ -135,11 +159,12 @@ Change what gets run with SPC p R:
 
 ## Org Mode
 
-| Key Combination        | Description           |
-|------------------------|-----------------------|
-| SPC o A                | Org mode agenda menu  |
-| S-<left>/<right>       | Change status of task |
-| C-c C-s (on todo item) | Schedule item         |
-| C-c C-d (on todo item) | Set deadline          |
-| C-c .                  | Stamp date on entry   |
-| C-c C-z (on todo item) | Create Note on item   |
+| Key Combination        | Description                                |
+|------------------------|--------------------------------------------|
+| SPC o A                | Org mode agenda menu                       |
+| S-<left>/<right>       | Change status of task                      |
+| C-c C-s (on todo item) | Schedule item                              |
+| C-c C-d (on todo item) | Set deadline                               |
+| C-c .                  | Stamp date on entry                        |
+| C-c C-z (on todo item) | Create Note on item                        |
+| Editing org file       | Easiest way is simply to :e ~/org/todo.org |

@@ -262,3 +262,11 @@
          (if (and (fboundp 'projectile-project-p) (projectile-project-p))
              (format "%s — %s" (projectile-project-name) "%b")
            "%b — Emacs"))))
+
+
+(setq langtool-java-classpath nil ; clear the bad Arch default
+      langtool-language-tool-jar "~/.local/share/languagetool/LanguageTool-6.6/languagetool-commandline.jar"
+      langtool-default-language "en-GB"
+      langtool-mother-tongue "en")
+
+(setq magit-save-repository-buffers 't)

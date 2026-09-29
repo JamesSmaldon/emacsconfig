@@ -93,3 +93,7 @@
 ;;                    "test-explorer-elisp.el" "te_runner.el")))
 
 (package! csv-mode)
+
+(package! shell-maker)
+(package! acp)
+(package! agent-shell)
