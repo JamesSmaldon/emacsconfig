@@ -117,13 +117,14 @@ registry -g'!*.tpl'
 |                 |                                 |
 
 ## Editing Code
-| Key Combination       | Description               |
-|-----------------------|---------------------------|
-| g c (with selection)  | Comment selected code     |
-| M-x revert-buffer     | Reload file from disk     |
-| SPC g B (q to remove) | Show git blame annotation |
-| SPC c r               | Rename symbol   |
-| gcc (gc on selection) | Toggle comments |
+| Key Combination       | Description                  |
+|-----------------------|------------------------------|
+| g c (with selection)  | Comment selected code        |
+| M-x revert-buffer     | Reload file from disk        |
+| SPC g B (q to remove) | Show git blame annotation    |
+| SPC c r               | Rename symbol                |
+| gcc (gc on selection) | Toggle comments              |
+| M-x json-pretty-print | Pretty print selected region |
 
 ## Editing Markdown
 | Key Combination | Description                                         |
