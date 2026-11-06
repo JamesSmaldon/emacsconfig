@@ -95,8 +95,8 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
-(setq org-agenda-files '("~/org/"))
+(setq org-directory "~/work/org-files/")
+(setq org-agenda-files (append (directory-files-recursively org-directory "\\.org$") '("~/org/")))
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -270,3 +270,14 @@
       langtool-mother-tongue "en")
 
 (setq magit-save-repository-buffers 't)
+
+
+;; Ruler everywhere (text and code buffers)
+(add-hook! '(prog-mode-hook text-mode-hook) #'display-fill-column-indicator-mode)
+
+;; Longer line length for Org only
+(setq-hook! 'org-mode-hook fill-column 120)
+
+(add-hook 'org-mode-hook #'auto-fill-mode)
+
+(setq doom-theme 'doom-henna)

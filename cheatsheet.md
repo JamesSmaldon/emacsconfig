@@ -106,6 +106,9 @@ registry -g'*.tpl'
 
 # Search for "registry" in all files without extension .tpl
 registry -g'!*.tpl'
+
+# Searhc within a specific subfolder
+registry -g'backend/pipelette/**'
 ```
 
 ## Building Code
@@ -169,3 +172,19 @@ registry -g'!*.tpl'
 | C-c .                  | Stamp date on entry                        |
 | C-c C-z (on todo item) | Create Note on item                        |
 | Editing org file       | Easiest way is simply to :e ~/org/todo.org |
+
+## Agent Shell
+
+| Key Combination                  | Description                                     |
+|----------------------------------|-------------------------------------------------|
+| M-x agent-shell                  | Start agent shell.                              |
+| C-c C-c                          | Interrupt current prompt                        |
+| M-x agent-shell-send-dwim        | Send selected text to the agent for discussion. |
+| M-x agent-shell-set-session-mode | Set the session mode (e.g. auto)                |
+
+## Undo/Redo
+
+| Key Combination     | Description                  |
+|---------------------|------------------------------|
+| SPC s u (M-x vundo) | Open vundo undo history view |
+| q                   | Quit vundo history view.     |

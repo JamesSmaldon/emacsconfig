@@ -97,3 +97,6 @@
 (package! shell-maker)
 (package! acp)
 (package! agent-shell)
+
+;; Add auto saving on buffer switch/lost focus etc.
+(package! super-save)
