@@ -148,6 +148,9 @@ registry -g'backend/pipelette/**'
 
 ## Debugging
 
+You need to configure dape templates for each project.
+Then you can run SPC d d and enter the name of the template.
+
 | Key Combination    | Description         |
 |--------------------|---------------------|
 | dap-debug          | Start debug session |
