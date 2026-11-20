@@ -188,3 +188,11 @@ registry -g'backend/pipelette/**'
 |---------------------|------------------------------|
 | SPC s u (M-x vundo) | Open vundo undo history view |
 | q                   | Quit vundo history view.     |
+
+## Workspaces
+
+| Key Combination | Description              |
+|-----------------|--------------------------|
+| SPC TAB TAB     | Show workspaces          |
+| SPC TAB 0       | Switch to workspace 1    |
+| SPC TAB d       | Remove current workspace |
